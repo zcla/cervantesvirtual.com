@@ -138,11 +138,11 @@ foreach ($livro in $livros) {
 
     if (-not (Test-Path "$outFolder\noocr.pdf")) {
         Write-Host "Criando o PDF" -ForegroundColor Cyan
-        wsl --cd $outFolder img2pdf ./img/*.jpg --output ./noocr.pdf
+        wsl --cd (Get-Item $outFolder).FullName img2pdf ./img/*.jpg --output ./noocr.pdf
     }
 
     if (-not (Test-Path "$outFolder\ocr.pdf")) {
         Write-Host "Executando o OCR no PDF" -ForegroundColor Cyan
-        wsl --cd $outFolder ocrmypdf -l spa ./noocr.pdf ./ocr.pdf
+        wsl --cd (Get-Item $outFolder).FullName ocrmypdf -l spa ./noocr.pdf ./ocr.pdf
     }
 }
